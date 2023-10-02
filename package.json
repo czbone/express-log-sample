@@ -1,0 +1,50 @@
+{
+  "name": "express-log-sample",
+  "version": "1.0.0",
+  "description": "Error log system with Typescript, Express, MongoDB",
+  "author": "Naoki Hirata",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --watch src -e ts,ejs --exec npm run build-start",
+    "start": "node .",
+    "build-start": "npm-run-all build start",
+    "build": "npm-run-all clean lint tsc copy-assets",
+    "copy-assets": "ts-node tools/copyAssets",
+    "tsc": "tsc",
+    "clean": "node tools/clean.mjs",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.3",
+    "morgan": "^1.10.0",
+    "shortid": "^2.2.16",
+    "tsconfig-paths": "^4.2.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.18",
+    "@types/module-alias": "^2.0.2",
+    "@types/morgan": "^1.9.6",
+    "@types/node": "^20.8.0",
+    "@types/shelljs": "0.8.13",
+    "@types/shortid": "^0.0.30",
+    "@types/uuid": "^9.0.4",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "nodemon": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.3",
+    "shelljs": "0.8.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
