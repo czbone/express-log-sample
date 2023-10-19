@@ -65,8 +65,3 @@ process.on('exit', (exitCode) => {
 })
 process.on('SIGINT', () => process.exit(0))
 process.on('SIGTERM', () => process.exit(0))
-
-// ##### uncaughtExceptionはキャッチしない #####
-//process.on('uncaughtException', (err) => {
-//	appLogger.error('app例外検出: ', err)
-//})
