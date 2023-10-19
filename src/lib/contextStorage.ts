@@ -20,14 +20,12 @@ class ContextStorage {
 		return this.storage.getStore() as IContext
 	}
 
-	// request情報とresponse情報も格納しておけば様々なデータをログに記録できる
 	constructor(
 		private req: Request,
-		private res: Response //public req: Request,
-	) //public res: Response
-	{
-		// ここでログに利用したいデータを作成
-		const requestId = shortid.generate() // サンプル:QiwPqO_fH
+		private res: Response
+	) {
+		// リクエスト情報を取得
+		const requestId = shortid.generate()
 		this.requestId = requestId
 		this.ip = req.ip
 		this.url = req.originalUrl
