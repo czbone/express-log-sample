@@ -12,7 +12,7 @@ interface IContext {
 class ContextStorage {
   static storage = new AsyncLocalStorage()
   requestId: string
-  ip: string
+  ip: string | undefined
   url: string
   body: string
 
