@@ -9,7 +9,7 @@ export const initDB = async () => {
 
     dbLogger.info('[MongoDB] connection established.')
   } catch (err) {
-    dbLogger.error('[MongoDB]', err)
+    dbLogger.alert('[MongoDB]', err)
     throw new Error('[MongoDB] Critical System error.') // uncaughtExceptionを発生させシステム終了
   }
 }

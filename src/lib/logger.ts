@@ -85,6 +85,7 @@ const dbTransports = [new transports.File(options.db_file), new transports.Conso
 // ログフォーマットの設定
 //  カスタムフォーマットはすべてのtransportの共通になるように設定する
 container.add('applog', {
+  levels: winston.config.syslog.levels, // alertメッセージが出せるようにする
   format: format.combine(
     customFormat(),
     format.timestamp({
@@ -94,6 +95,7 @@ container.add('applog', {
   transports: appTransports
 })
 container.add('dblog', {
+  levels: winston.config.syslog.levels, // alertメッセージが出せるようにする
   format: format.combine(
     customFormat(),
     format.timestamp({

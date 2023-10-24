@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import { AsyncErrorParam, dbLogger, getStackTrace } from '../lib/logger'
 import { userRoles } from '../types/role'
 
@@ -54,15 +54,6 @@ const schema = new mongoose.Schema(
           })
           return user
         } catch (err) {
-          if (err instanceof mongo.MongoError) {
-            // MongoDBのエラーを取得
-            console.log('#get mongodb error')
-            console.log(err.message)
-          } else if (err instanceof mongoose.Error.ValidationError) {
-            // Mongooseのエラーを取得
-            const messages = Object.values(err.errors).map((err) => err.message)
-          }
-
           // エラーメッセージ出力
           dbLogger.error({
             message: err,

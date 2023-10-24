@@ -46,7 +46,7 @@ const run = async () => {
     })
   } catch (err) {
     // システム異常終了
-    appLogger.error(err)
+    appLogger.alert(err)
 
     // exitイベントでログをとる
     process.exitCode = 10
@@ -59,7 +59,7 @@ process.on('exit', (exitCode) => {
   if (exitCode === 0) {
     appLogger.info('サーバが終了しました')
   } else {
-    appLogger.error(`サーバが異常終了しました: 終了コード=${exitCode}`)
+    appLogger.alert(`サーバが異常終了しました: 終了コード=${exitCode}`)
   }
   appLogger.end()
 })

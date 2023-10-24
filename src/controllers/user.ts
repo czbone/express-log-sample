@@ -22,7 +22,8 @@ class UserController {
     const user = await User.addUser({
       email: 'user@example.com',
       name: '一般ユーザ',
-      password: 'password',
+      //password: 'password',
+      password: '',
       role: 'none' // 不正値
     })
     if (user) {
@@ -41,6 +42,7 @@ class UserController {
       email: 'admin@example.com',
       name: 'sample',
       password: 'sample',
+      //password: '',
       role: 'admin'
     })
     if (user) {
