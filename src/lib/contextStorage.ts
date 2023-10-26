@@ -16,10 +16,6 @@ class ContextStorage {
   url: string
   body: string
 
-  static get context(): IContext {
-    return this.storage.getStore() as IContext
-  }
-
   constructor(
     private req: Request,
     private res: Response
@@ -31,6 +27,10 @@ class ContextStorage {
     this.url = req.originalUrl
     this.body = ''
     if (Object.keys(req.body as object).length) this.body = JSON.stringify(req.body)
+  }
+
+  static get context(): IContext {
+    return this.storage.getStore() as IContext
   }
 }
 
