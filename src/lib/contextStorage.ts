@@ -1,6 +1,6 @@
 import { AsyncLocalStorage } from 'async_hooks'
 import { Request, Response } from 'express'
-import shortid from 'shortid'
+import shortid from 'short-uuid'
 
 interface IContext {
   requestId: string
