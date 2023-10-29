@@ -5,7 +5,7 @@ export const initDB = async () => {
   // MongoDB初期接続
   try {
     mongoose.set('strictQuery', false)
-    await mongoose.connect(process.env.MONGO_URI!) //「!」で文字列にキャスト
+    await mongoose.connect(process.env.MONGO_URI!)
 
     dbLogger.info('[MongoDB] connection established.')
   } catch (err) {

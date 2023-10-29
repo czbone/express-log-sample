@@ -33,8 +33,7 @@ const schema = new mongoose.Schema(
         } catch (err) {
           dbLogger.error({
             message: err,
-            stack: getStackTrace(),
-            args: undefined
+            stack: getStackTrace()
           } as AsyncErrorParam) // パラメータの型を制限
           return null
         }
@@ -77,8 +76,7 @@ const schema = new mongoose.Schema(
           // エラーメッセージ出力
           dbLogger.error({
             message: err,
-            stack: getStackTrace(),
-            args: undefined
+            stack: getStackTrace()
           } as AsyncErrorParam)
           return null
         }
@@ -94,16 +92,11 @@ const User = mongoose.model('User', schema, 'user' /* MongoDBのコレクショ�
   try {
     await User.createIndexes()
   } catch (err) {
-    //dbLogger.error({ message: err, stack: getStackTrace() })
     // エラーメッセージ出力
     dbLogger.error({
       message: err,
-      stack: getStackTrace(),
-      args: undefined
+      stack: getStackTrace()
     } as AsyncErrorParam)
-
-    // ### initDB()でDBの接続チェックするのでここでは落とさない
-    //throw new Error('[MongoDB] Critical System error.') // uncaughtExceptionを発生させシステム終了
   }
 })()
 
