@@ -6,7 +6,8 @@ Multiple purpose logging example on Nodejs express system by customizing winston
 
 - Typescript base
 - using Winston module
-- connect MongoDB
+- MongoDB error logging
+- logging to console and file(json)
 - logging HTTP request context
 　
 ## Environment
@@ -37,7 +38,9 @@ MONGO_URL=mongodb://localhost:27017/sampleDB
 3. Launched on VSCode
 
 Show the `Run and Debug` view and launch `Start server` from `Debugging start` menu.
+
 Start the development server on http://localhost:3000
+with logging files in `logs` directory.
 
 ## Production build
 
