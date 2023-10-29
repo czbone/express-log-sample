@@ -5,7 +5,7 @@ Multiple purpose logging example on Nodejs express system by customizing winston
 ## Features
 
 - Typescript base
-- useing Winston module
+- using Winston module
 - connect MongoDB
 - logging HTTP request context
 　
