@@ -35,9 +35,18 @@ Edit `.env` file:
 MONGO_URL=mongodb://localhost:27017/sampleDB
 ```
 
-3. Launched on VSCode
+3. Launch server
 
-Show the `Run and Debug` view and launch `Start server` from `Debugging start` menu.
+If using VSCode, show the `Run and Debug` view and launch `Start server` from `Debugging start` menu.
+If using command, input below.
+
+```bash
+# yarn
+yarn dev
+
+# npm
+npm run dev
+```
 
 Start the development server on http://localhost:3000
 with logging files in `logs` directory.
