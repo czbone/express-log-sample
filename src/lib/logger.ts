@@ -2,9 +2,9 @@ import winston, { format, transports } from 'winston'
 import ContextStorage from '../lib/contextStorage'
 
 type AsyncErrorParam = {
-  message: unknown
-  stack: string | undefined
-  args: object | undefined
+  message: Error
+  stack: string
+  args?: object
 }
 
 const customFormat = format((info) => {
@@ -108,18 +108,6 @@ container.add('dblog', {
 const appLogger = container.get('applog')
 const dbLogger = container.get('dblog')
 
-const asyncWrapper = async (func: Promise<object>): Promise<unknown> => {
-  try {
-    const data = await func
-    return data as Promise<unknown>
-  } catch (err) {
-    dbLogger.error({
-      message: err,
-      stack: getStackTrace()
-    })
-    return null
-  }
-}
 const getStackTrace = () => {
   const err = new Error()
   Error.captureStackTrace(err, getStackTrace)
@@ -129,4 +117,4 @@ const getStackTrace = () => {
   return trace
 }
 
-export { AsyncErrorParam, appLogger, asyncWrapper, dbLogger, getStackTrace }
+export { AsyncErrorParam, appLogger, dbLogger, getStackTrace }
