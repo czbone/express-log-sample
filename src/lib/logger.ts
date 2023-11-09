@@ -30,6 +30,11 @@ const customFormat = format((info) => {
     info.url = ContextStorage.context?.url
     if (ContextStorage.context?.body) info.body = ContextStorage.context?.body
   }
+
+  // infoの場合はスタックトレースを出力しない
+  if (info.level === 'info') {
+    info.stack = undefined
+  }
   return info
 })
 
