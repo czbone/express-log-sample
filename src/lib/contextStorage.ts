@@ -2,11 +2,15 @@ import { AsyncLocalStorage } from 'async_hooks'
 import { Request, Response } from 'express'
 import shortid from 'short-uuid'
 
-interface IContext {
+export interface IBody {
+  [key: string]: string
+}
+export interface IContext {
   requestId: string
   ip: string
   url: string
-  body: string
+  body: IBody
+  bodyText: string
 }
 
 class ContextStorage {
@@ -14,7 +18,8 @@ class ContextStorage {
   requestId: string
   ip: string | undefined
   url: string
-  body: string
+  body: IBody | undefined
+  bodyText: string
 
   constructor(
     private req: Request,
@@ -25,8 +30,8 @@ class ContextStorage {
     this.requestId = requestId
     this.ip = req.ip
     this.url = req.originalUrl
-    this.body = ''
-    if (Object.keys(req.body as object).length) this.body = JSON.stringify(req.body)
+    if (Object.keys(req.body as object).length) this.body = req.body as IBody
+    this.bodyText = ''
   }
 
   static get context(): IContext {

@@ -1,12 +1,13 @@
 import winston, { format, transports } from 'winston'
-import ContextStorage from '../lib/contextStorage'
+import ContextStorage, { IBody } from '../lib/contextStorage'
 
-type AsyncErrorParam = {
+const MAX_DATA_SIZE = 100 // POSTデータの最大長
+
+interface AsyncErrorParam {
   message: Error
   stack: string
   args?: object
 }
-
 const customFormat = format((info) => {
   if (info instanceof Error) {
     info = Object.assign(
@@ -25,10 +26,28 @@ const customFormat = format((info) => {
 
   // リクエスト情報
   if (ContextStorage.context?.requestId) {
-    info.requestId = ContextStorage.context?.requestId
-    info.ip = ContextStorage.context?.ip
-    info.url = ContextStorage.context?.url
-    if (ContextStorage.context?.body) info.body = ContextStorage.context?.body
+    info.requestId = ContextStorage.context.requestId
+    info.ip = ContextStorage.context.ip
+    info.url = ContextStorage.context.url
+
+    if (ContextStorage.context.body) {
+      if (ContextStorage.context.bodyText.length === 0) {
+        const destBody: IBody = {}
+        const body = ContextStorage.context.body
+        Object.keys(body).forEach((key) => {
+          let data = body[key]
+          const dataSizeInBytes = Buffer.from(data).length
+
+          // 最大サイズまで取得
+          if (dataSizeInBytes > MAX_DATA_SIZE) {
+            data = data.slice(0, MAX_DATA_SIZE) + '…' // 省略記号付加
+          }
+          destBody[key] = data
+        })
+        ContextStorage.context.bodyText = JSON.stringify(destBody)
+      }
+      info.body = ContextStorage.context.bodyText
+    }
   }
   return info
 })
