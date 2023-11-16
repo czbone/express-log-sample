@@ -10,7 +10,7 @@ export interface IContext {
   ip: string
   url: string
   body: IBody
-  bodyText: string
+  bodySaved: IBody
 }
 
 class ContextStorage {
@@ -19,7 +19,7 @@ class ContextStorage {
   ip: string | undefined
   url: string
   body: IBody | undefined
-  bodyText: string
+  bodySaved: IBody | undefined
 
   constructor(
     private req: Request,
@@ -31,7 +31,6 @@ class ContextStorage {
     this.ip = req.ip
     this.url = req.originalUrl
     if (Object.keys(req.body as object).length) this.body = req.body as IBody
-    this.bodyText = ''
   }
 
   static get context(): IContext {

@@ -31,7 +31,7 @@ const customFormat = format((info) => {
     info.url = ContextStorage.context.url
 
     if (ContextStorage.context.body) {
-      if (ContextStorage.context.bodyText.length === 0) {
+      if (!ContextStorage.context.bodySaved) {
         const destBody: IBody = {}
         const body = ContextStorage.context.body
         Object.keys(body).forEach((key) => {
@@ -44,9 +44,9 @@ const customFormat = format((info) => {
           }
           destBody[key] = data
         })
-        ContextStorage.context.bodyText = JSON.stringify(destBody)
+        ContextStorage.context.bodySaved = destBody
       }
-      info.body = ContextStorage.context.bodyText
+      info.body = ContextStorage.context.bodySaved
     }
   }
   return info
