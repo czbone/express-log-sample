@@ -6,4 +6,5 @@ router.get('/init', UserController.initData)
 router.get('/error1', UserController.errorPattern1)
 router.get('/error2', UserController.errorPattern2)
 router.get('/error3', UserController.errorPattern3)
+router.post('/error4', UserController.errorPattern4)
 export default router

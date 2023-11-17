@@ -66,5 +66,12 @@ class UserController {
       res.status(400).json({ message: 'エラーが発生しました' })
     }
   }
+  errorPattern4: RequestHandler = async (req: Request, res: Response, _next: NextFunction) => {
+    appLogger.info('#テストパターン4')
+
+    // POSTデータのロギングパターン
+    appLogger.error('⇒ エラーが発生しました')
+    res.status(400).json({ message: 'エラーが発生しました' })
+  }
 }
 export default new UserController()

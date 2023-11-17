@@ -10,6 +10,7 @@
         <button id="err1-button" class="btn btn-primary" type="button">パターン1</button>
         <button id="err2-button" class="btn btn-primary" type="button">パターン2</button>
         <button id="err3-button" class="btn btn-primary" type="button">パターン3</button>
+        <button id="err4-button" class="btn btn-primary" type="button">パターン4</button>
       </div>
     </div>
   </div>
@@ -44,6 +45,22 @@
     const err3Button = document.querySelector('#err3-button')
     err3Button.addEventListener('click', async()=>{
       const res = await fetch('/api/user/error3')
+      if (res.status === 400){
+        alert('テストを実行しました ⇒ エラー発生')
+      } else {
+        alert('テストの実行に失敗しました')
+      }
+    })
+    const err4Button = document.querySelector('#err4-button')
+    err4Button.addEventListener('click', async()=>{
+      const res = await fetch('/api/user/error4', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ param1: '日本語データ', param2: '12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890' })
+      })
       if (res.status === 400){
         alert('テストを実行しました ⇒ エラー発生')
       } else {
