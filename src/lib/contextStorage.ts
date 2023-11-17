@@ -7,8 +7,8 @@ export interface IBody {
 }
 export interface IContext {
   requestId: string
-  ip: string
   url: string
+  ip: string
   body: IBody
   bodySaved: IBody
 }
@@ -16,8 +16,8 @@ export interface IContext {
 class ContextStorage {
   static storage = new AsyncLocalStorage()
   requestId: string
-  ip: string | undefined
   url: string
+  ip: string | undefined
   body: IBody | undefined
   bodySaved: IBody | undefined
 
@@ -28,8 +28,8 @@ class ContextStorage {
     // リクエスト情報を取得
     const requestId = shortid.generate()
     this.requestId = requestId
-    this.ip = req.ip
     this.url = req.originalUrl
+    this.ip = req.ip
     if (Object.keys(req.body as object).length) this.body = req.body as IBody
   }
 

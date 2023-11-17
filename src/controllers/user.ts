@@ -1,5 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express'
-import { appLogger } from '../lib/logger'
+import { appLogger, getStackTrace } from '../lib/logger'
 import { User } from '../models'
 
 class UserController {
@@ -70,8 +70,12 @@ class UserController {
     appLogger.info('#テストパターン4')
 
     // POSTデータのロギングパターン
-    appLogger.error('⇒ エラーが発生しました')
-    res.status(400).json({ message: 'エラーが発生しました' })
+    appLogger.error({
+      message: '⇒ エラーが発生しました',
+      stack: getStackTrace()
+    })
+    //res.status(400).json({ message: 'エラーが発生しました' })
+    res.json()
   }
 }
 export default new UserController()
