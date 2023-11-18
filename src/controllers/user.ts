@@ -74,8 +74,7 @@ class UserController {
       message: '⇒ エラーが発生しました',
       stack: getStackTrace()
     })
-    //res.status(400).json({ message: 'エラーが発生しました' })
-    res.json()
+    res.status(400).json({ message: 'エラーが発生しました' })
   }
 }
 export default new UserController()

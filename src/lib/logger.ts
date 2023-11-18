@@ -1,5 +1,5 @@
 import winston, { format, transports } from 'winston'
-import ContextStorage, { IBody } from '../lib/contextStorage'
+import ContextStorage, { IBody } from './contextStorage'
 
 const MAX_DATA_SIZE = 100 // POSTデータの最大長
 
@@ -8,6 +8,14 @@ interface AsyncErrorParam {
   stack: string
   args?: object
 }
+
+// タグ色の変更
+winston.addColors({
+  emerg: 'bold white redBG',
+  alert: 'bold white redBG',
+  crit: 'bold white redBG'
+})
+
 const customFormat = format((info) => {
   if (info instanceof Error) {
     info = Object.assign(
