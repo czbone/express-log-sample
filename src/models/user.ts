@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { AsyncErrorParam, dbLogger, getStackTrace } from '../lib/logger'
+import { IAsyncErrorParam, dbLogger, getStackTrace } from '../lib/logger'
 import { userRoles } from '../types/role'
 
 const { roles } = userRoles()
@@ -34,7 +34,7 @@ const schema = new mongoose.Schema(
           dbLogger.error({
             message: err,
             stack: getStackTrace()
-          } as AsyncErrorParam) // パラメータの型を制限
+          } as IAsyncErrorParam)
           return null
         }
       },
@@ -59,7 +59,7 @@ const schema = new mongoose.Schema(
             stack: getStackTrace(),
             args: args,
             detail: '追加情報'
-          } as AsyncErrorParam) // パラメータの型を制限
+          } as IAsyncErrorParam)
           return null
         }
       },
@@ -77,7 +77,7 @@ const schema = new mongoose.Schema(
           dbLogger.error({
             message: err,
             stack: getStackTrace()
-          } as AsyncErrorParam)
+          } as IAsyncErrorParam)
           return null
         }
       }
@@ -96,7 +96,7 @@ const User = mongoose.model('User', schema, 'user' /* MongoDBのコレクショ�
     dbLogger.error({
       message: err,
       stack: getStackTrace()
-    } as AsyncErrorParam)
+    } as IAsyncErrorParam)
   }
 })()
 

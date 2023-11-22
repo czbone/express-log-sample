@@ -3,7 +3,7 @@ import ContextStorage, { IBody } from './contextStorage'
 
 const MAX_DATA_SIZE = 100 // POSTデータの最大長
 
-interface AsyncErrorParam {
+interface IAsyncErrorParam {
   message: Error
   stack: string
   args?: object
@@ -149,4 +149,4 @@ const getStackTrace = () => {
   return trace
 }
 
-export { AsyncErrorParam, appLogger, dbLogger, getStackTrace }
+export { IAsyncErrorParam, appLogger, dbLogger, getStackTrace }
